@@ -1,0 +1,33 @@
+{
+  "name": "brewassignment",
+  "version": "1.0.0",
+  "description": "Assignment for brewapps",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rishabh-gupta-au13/brewAssignment.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rishabh-gupta-au13/brewAssignment/issues"
+  },
+  "homepage": "https://github.com/rishabh-gupta-au13/brewAssignment#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-mongo-sanitize": "^2.2.0",
+    "helmet": "^7.1.0",
+    "joi": "^17.11.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.0.0",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.0.1"
+  }
+}
