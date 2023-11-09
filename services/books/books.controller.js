@@ -20,7 +20,6 @@ class BookController{
           result.title=saveOrders.title;
 
           reply(req,res,result);
-          console.log(saveOrders)
     
         } catch (err) {
           return serverError(req,res,err)
