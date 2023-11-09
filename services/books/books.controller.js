@@ -29,11 +29,50 @@ class BookController{
       }
     async getBook(req,res){
         try{
-            const checkIfBookExist=await bookQuery.getBookByTitle(req.params.title);
+            let  checkIfBookExist
+            if(req.query.title){
+                checkIfBookExist=await bookQuery.getBookByTitle(req.query.title);
+            }else{
+                checkIfBookExist=await bookQuery.getAllBooks();
+
+            }
+            
             if(!checkIfBookExist){
                 return clientError(req,res,"Book With This Title Don't Exist",404)
             }
             return reply(req,res,checkIfBookExist);
+
+
+        }catch(err){
+            return serverError(req,res,err)
+           
+        }
+       
+
+
+    };
+    async updateBook(req,res){
+        try{
+    
+            await bookQuery.updateBook(req.query,req.body)
+            
+            return reply(req,res,`Book With ${req.query.title} Updated Successfully`);
+
+
+        }catch(err){
+            return serverError(req,res,err)
+           
+        }
+       
+
+
+    }
+    async deleteBook(req,res){
+        try{
+    
+            await bookQuery.deleteBook(req.query.title)
+            
+            return reply(req,res,`Book With ${req.query.title} Deleted Successfully`);
 
 
         }catch(err){
