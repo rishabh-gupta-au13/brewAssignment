@@ -28,6 +28,18 @@ class BookQuery{
           console.log(err);
         }
       }
+      async getBookByTitle(title){
+        try {
+          
+          let getBook = await Book.findOne({title},{"_id":0,"__v":0});
+
+          return getBook
+        } catch (err) {
+          console.log(err);
+        }
+      }
+
+      
 
 
 

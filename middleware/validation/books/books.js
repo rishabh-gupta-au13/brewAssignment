@@ -14,7 +14,7 @@ class ValidateBook {
 
             if (error) {
 
-                return clientError(req, res, error.message);
+                return clientError(req, res, error.message,400);
 
             }
             return next();
@@ -23,7 +23,27 @@ class ValidateBook {
         }
 
 
+    };
+    async validateGetBook(req,res,next){
+        const schema = Joi.object().keys({
+            title: Joi.string().required(),
+        });
+
+        try {
+            const { error } =  schema.validate({...req.params});
+
+            if (error) {
+
+                return clientError(req, res, error.message,400);
+
+            }
+            return next();
+        } catch (error) {
+            return serverError(req, res, error);
+        }
+
     }
+    
 }
 
 module.exports = new ValidateBook();

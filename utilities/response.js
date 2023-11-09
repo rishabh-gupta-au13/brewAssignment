@@ -1,9 +1,9 @@
-const clientError = (req, res, error) => {
+const clientError = (req, res, error,status) => {
     let response = {
-      status: 400,
+      status,
       error: error
     };
-    return res.send(response);
+    return res.status(status).send(response);
   };
   
   const serverError = (req, res, error) => {

@@ -8,15 +8,17 @@ class BookController{
         const checkIfBookExist=await bookQuery.getBook(title);
         if(checkIfBookExist){
             const message="Book Already Exists"
-            return clientError(req,res,message)
+            return clientError(req,res,message,409)
         }
           const saveOrders = await bookQuery.saveBook(
            title,
            author,
            description,
           );
-          delete saveOrders.__v;
+          
           result.meessage='Book Added Successfully';
+          result.title=saveOrders.title;
+
           reply(req,res,result);
           console.log(saveOrders)
     
@@ -25,6 +27,23 @@ class BookController{
          
         }
       }
+    async getBook(req,res){
+        try{
+            const checkIfBookExist=await bookQuery.getBookByTitle(req.params.title);
+            if(!checkIfBookExist){
+                return clientError(req,res,"Book With This Title Don't Exist",404)
+            }
+            return reply(req,res,checkIfBookExist);
+
+
+        }catch(err){
+            return serverError(req,res,err)
+           
+        }
+       
+
+
+    }
 
 }
 
