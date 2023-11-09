@@ -60,8 +60,7 @@ class BookQuery{
       }
       async deleteBook(query){
         try{
-        await Book.deleteOne({query});
-       console.log(c)
+       await Book.deleteOne({title:query});
         }catch(err){
           console.log(err)
         }
